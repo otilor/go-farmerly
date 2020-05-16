@@ -1,6 +1,7 @@
 package farmerly
 
 import (
+	"log"
 	"net/http"
 )
 
@@ -10,6 +11,11 @@ func Index(w http.ResponseWriter, r *http.Request){
 
 func Category(w http.ResponseWriter, r *http.Request) {
 	parseView(w, "category.html", r)
+	if r.Method == "POST"{
+		_ = r.ParseForm()
+		log.Println("POST request")
+		log.Println(r.Form)
+	}
 }
 
 func ViewGen(w http.ResponseWriter, r *http.Request){
