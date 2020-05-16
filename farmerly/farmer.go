@@ -10,7 +10,7 @@ func Index(w http.ResponseWriter, r *http.Request){
 }
 
 func Category(w http.ResponseWriter, r *http.Request) {
-	parseView(w, "category.html", r)
+	parseView(w, "category.gohtml", r)
 	if r.Method == "POST"{
 		_ = r.ParseForm()
 		log.Println("POST request")
