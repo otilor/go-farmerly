@@ -6,7 +6,7 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request){
-	parseView(w, "farmers.html", r)
+	parseView(w, "farmers.gohtml", r)
 }
 
 func Category(w http.ResponseWriter, r *http.Request) {
@@ -19,6 +19,6 @@ func Category(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewGen(w http.ResponseWriter, r *http.Request){
-	parseView(w, "generated_content.html", r)
+	parseView(w, "generated_content.gohtml", r)
 }
 
