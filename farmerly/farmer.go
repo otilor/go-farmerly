@@ -10,12 +10,16 @@ func Index(w http.ResponseWriter, r *http.Request){
 }
 
 func Category(w http.ResponseWriter, r *http.Request) {
-	parseView(w, "category.gohtml", r)
-	if r.Method == "POST"{
+	if r.Method == "GET"{
+		parseView(w, "category.gohtml", r)
+	}else{
 		_ = r.ParseForm()
-		log.Println("POST request")
-		log.Println(r.Form)
+		if hasEmptyValues(r.Form){
+			log.Println("Is empty!")
+		}
+		http.Redirect(w, r, "/show", 301)
 	}
+
 }
 
 func ViewGen(w http.ResponseWriter, r *http.Request){
