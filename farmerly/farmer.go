@@ -23,6 +23,7 @@ func Category(w http.ResponseWriter, r *http.Request) {
 			name := r.FormValue("username")
 			category := r.FormValue("category")
 			addUser(name, category)
+			http.Redirect(w, r, "/show", 301)
 		}
 
 	}
