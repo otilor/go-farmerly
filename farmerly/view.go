@@ -8,14 +8,10 @@ import (
 
 func parseView(w http.ResponseWriter, tmpl string, r *http.Request) {
 	t, err := template.ParseFiles(tmpl)
-	if err != nil {
-		panic(err.Error())
-	}
+	isError(err)
 
 	err = t.Execute(w, nil)
-	if err != nil {
-		panic(err.Error())
-	}
+	isError(err)
 }
 
 

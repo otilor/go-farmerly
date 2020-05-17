@@ -12,8 +12,6 @@ func connectToDatabase() (db *sql.DB) {
 	databaseName := "farmerly"
 
 	db, err := sql.Open(databaseDriver, databaseUser+":"+databasePassword+"@/"+databaseName)
-	if err != nil {
-		panic(err.Error())
-	}
+	isError(err)
 	return db
 }

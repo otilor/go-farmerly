@@ -7,4 +7,3 @@ import (
 func Index(w http.ResponseWriter, r *http.Request) {
 	parseView(w, "farmers.gohtml", r)
 }
-
