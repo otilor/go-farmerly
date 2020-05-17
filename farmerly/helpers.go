@@ -4,15 +4,15 @@
 package farmerly
 
 import (
-	"fmt"
 	"net/url"
 )
 
-func hasEmptyValues(values map[string][]string) bool {
-	if len(values) == 0 {
-		return true
+func hasEmptyValues(details url.Values) bool {
+	if len(details["category"][0]) != 0 && len(details["username"][0]) != 0 {
+		return false
 	}
-	return false
+	return true
+
 }
 
 func isError(err error) {
@@ -21,10 +21,3 @@ func isError(err error) {
 	}
 }
 
-func verifyData(details url.Values) {
-	if len(details["category"][0]) != 0 && len(details["username"][0]) != 0 {
-		fmt.Println("Submitted successfully, your details are")
-		fmt.Println(details)
-	}
-
-}
