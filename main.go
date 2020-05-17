@@ -14,4 +14,3 @@ func main() {
 	log.Println("Server started on: 127.0.0.1:8000")
 	_ = http.ListenAndServe(":8000", nil)
 }
-
