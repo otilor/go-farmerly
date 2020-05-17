@@ -1,7 +1,8 @@
 package farmerly
+
 type Categories struct {
-	id int
-	name string
+	id         int
+	name       string
 	uniqueHash string
 }
 
@@ -9,7 +10,6 @@ func fetchCategories() (res []Categories) {
 	db := databaseConn()
 	fetchCategories, err := db.Query("SELECT * FROM categories")
 	isError(err)
-
 
 	categories := Categories{}
 	var result []Categories
