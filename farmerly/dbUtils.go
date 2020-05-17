@@ -3,6 +3,7 @@
 
 package farmerly
 
+
 type Categories struct {
 	Id         int
 	Name       string
