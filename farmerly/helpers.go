@@ -20,4 +20,3 @@ func isError(err error) {
 		panic(err.Error())
 	}
 }
-
