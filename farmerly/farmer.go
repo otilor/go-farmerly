@@ -1,6 +1,7 @@
 package farmerly
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -10,5 +11,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 
 func Category(w http.Request, r *http.Request) {
-	fetchCategories()
+	categories := fetchCategories()
+	fmt.Println(categories)
+
 }
