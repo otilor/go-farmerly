@@ -33,7 +33,7 @@ func fetchCategories() (res []Categories) {
 	return result
 }
 
-func addUser(details url.Values) {
+func verifyData(details url.Values) {
 	if len(details["category"][0]) != 0 && len(details["username"][0]) != 0 {
 		fmt.Println("Submitted successfully, your details are")
 		fmt.Println(details)

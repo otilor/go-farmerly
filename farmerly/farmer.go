@@ -16,7 +16,7 @@ func Category(w http.ResponseWriter, r *http.Request) {
 	}else {
 		r.ParseForm()
 		details := r.Form
-		addUser(details)
+		verifyData(details)
 
 	}
 
