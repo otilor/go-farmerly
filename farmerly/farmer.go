@@ -10,7 +10,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func Category(w http.Request, r *http.Request) {
+func Category(w http.ResponseWriter, r *http.Request) {
 	categories := fetchCategories()
 	fmt.Println(categories)
 
