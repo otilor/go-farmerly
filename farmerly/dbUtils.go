@@ -1,5 +1,10 @@
 package farmerly
 
+import (
+	"fmt"
+	"net/url"
+)
+
 type Categories struct {
 	Id         int
 	Name       string
@@ -26,4 +31,12 @@ func fetchCategories() (res []Categories) {
 		result = append(result, categories)
 	}
 	return result
+}
+
+func addUser(details url.Values) {
+	if len(details["category"][0]) != 0 && len(details["username"][0]) != 0 {
+		fmt.Println("Submitted successfully, your details are")
+		fmt.Println(details)
+	}
+
 }

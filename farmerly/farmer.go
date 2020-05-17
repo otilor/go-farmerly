@@ -10,6 +10,14 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 
 func Category(w http.ResponseWriter, r *http.Request) {
-	categories := fetchCategories()
-	parseView(w, "category.gohtml", categories, r)
+	if r.Method == "GET"{
+		categories := fetchCategories()
+		parseView(w, "category.gohtml", categories, r)
+	}else {
+		r.ParseForm()
+		details := r.Form
+		addUser(details)
+
+	}
+
 }
