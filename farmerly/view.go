@@ -17,3 +17,8 @@ func parseView(w http.ResponseWriter, tmpl string, r *http.Request) {
 		panic(err.Error())
 	}
 }
+
+
+func ViewGen(w http.ResponseWriter, r *http.Request) {
+	parseView(w, "generated_content.gohtml", r)
+}
