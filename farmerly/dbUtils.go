@@ -4,7 +4,7 @@ type Categories struct {
 	name string
 }
 
-func fetchCategories() {
+func fetchCategories() (res []Categories) {
 	db := databaseConn()
 	fetchCategories, err := db.Query("SELECT * FROM categories")
 	isError(err)
@@ -23,4 +23,5 @@ func fetchCategories() {
 		categories.name = name
 		result = append(result, categories)
 	}
+	return result
 }

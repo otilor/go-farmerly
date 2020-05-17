@@ -5,5 +5,10 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	parseView(w, "farmers.gohtml", r)
+	parseEmptyView(w, "farmers.gohtml", r)
+}
+
+
+func Category(w http.Request, r *http.Request) {
+	fetchCategories()
 }
