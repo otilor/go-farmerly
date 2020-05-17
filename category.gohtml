@@ -179,13 +179,12 @@ John Abraham</span>is now following you
 
                         <div class="text-center">
                             <select name = "category">
-                                <option>Agricultural Extension</option>
-                                <option>Irrigation</option>
-                                <option>Genetically Modified Foods</option>
-                                <option>Poultry</option>
-                                <option>Fishery</option>
+                                {{ range. }}
+                                    <option>{{.Name}}</option>
+
+                                {{ end }}
                             </select>
-                            <input name = "username" value="bob">
+                            <input name = "username" placeholder="Enter your name">
                             <input type="submit" class=" form-group btn btn-brand" value="Submit">
                         </div>
 

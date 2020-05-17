@@ -1,8 +1,8 @@
 package farmerly
 
 type Categories struct {
-	id         int
-	name       string
+	Id         int
+	Name       string
 	uniqueHash string
 }
 
@@ -14,14 +14,14 @@ func fetchCategories() (res []Categories) {
 	categories := Categories{}
 	var result []Categories
 	for fetchCategories.Next() {
-		var id int
+		var Id int
 		var name, hash string
-		err = fetchCategories.Scan(&id, &name, &hash)
+		err = fetchCategories.Scan(&Id, &name, &hash)
 
 		isError(err)
 
-		categories.id = id
-		categories.name = name
+		categories.Id = Id
+		categories.Name = name
 		categories.uniqueHash = hash
 		result = append(result, categories)
 	}
