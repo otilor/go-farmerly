@@ -3,7 +3,6 @@
 
 package farmerly
 
-
 type Categories struct {
 	Id         int
 	Name       string
@@ -36,6 +35,5 @@ func addUser(name string, category string) {
 	db := databaseConn()
 	addUser, err := db.Prepare("INSERT INTO users(name, category_name) VALUES (?, ?)")
 	isError(err)
-
 	addUser.Exec(name, category)
 }
