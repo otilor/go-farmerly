@@ -18,14 +18,13 @@ func fetchCategories() (res []Categories) {
 	var result []Categories
 	for fetchCategories.Next() {
 		var Id int
-		var name, hash string
-		err = fetchCategories.Scan(&Id, &name, &hash)
+		var name string
+		err = fetchCategories.Scan(&Id, &name)
 
 		isError(err)
 
 		categories.Id = Id
 		categories.Name = name
-		categories.uniqueHash = hash
 		result = append(result, categories)
 	}
 	return result
