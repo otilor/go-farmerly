@@ -25,5 +25,13 @@ func parseView(w http.ResponseWriter, tmpl string, pageVars []Categories, r *htt
 }
 
 func ViewGen(w http.ResponseWriter, r *http.Request) {
-	parseEmptyView(w, "generated_content.gohtml", r)
+	if r.Method == "GET" {
+		_, ok := r.URL.Query()["uniqueHash"]
+		if ok{
+			parseEmptyView(w , "farmers.gohtml", r)
+		}
+		parseEmptyView(w, "generated_content.gohtml", r)
+	} else {
+	}
+
 }
