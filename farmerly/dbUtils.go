@@ -33,7 +33,8 @@ func fetchCategories() (res []Categories) {
 
 func addUser(name string, category string) {
 	db := databaseConn()
-	addUser, err := db.Prepare("INSERT INTO users(name, category_name) VALUES (?, ?)")
+	userHash := generateUserHash()
+	addUser, err := db.Prepare("INSERT INTO users(name, category_name, userHash) VALUES (?, ?, ?)")
 	isError(err)
-	addUser.Exec(name, category)
+	addUser.Exec(name, category, userHash)
 }
