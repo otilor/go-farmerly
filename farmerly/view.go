@@ -16,7 +16,7 @@ func parseEmptyView(w http.ResponseWriter, tmpl string, r *http.Request) {
 	isError(err)
 }
 
-func parseView(w http.ResponseWriter, tmpl string, pageVars []Categories, r *http.Request) {
+func parseView(w http.ResponseWriter, tmpl string, pageVars interface{}, r *http.Request) {
 	t, err := template.ParseFiles(tmpl)
 	isError(err)
 
@@ -28,10 +28,13 @@ func ViewGen(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		uniqueHash, ok := r.URL.Query()["uniqueHash"]
 		if ok{
-			findUserWithHash(uniqueHash)
-			parseEmptyView(w , "farmers.gohtml", r)
+			user := findUserWithHash(uniqueHash)
+
+			parseView(w, "farmers.gohtml", user, r)
+		}else {
+			parseEmptyView(w, "generated_content.gohtml", r)
 		}
-		parseEmptyView(w, "generated_content.gohtml", r)
+
 	} else {
 	}
 
@@ -40,7 +43,7 @@ func ViewGen(w http.ResponseWriter, r *http.Request) {
 func findUserWithHash(hash []string) []UserFromDatabase{
 	uniqueHash := hash[0]
 	db := databaseConn()
-	findUserWithHash, err:= db.Query("SELECT users WHERE uniqueHash = ?", uniqueHash)
+	findUserWithHash, err:= db.Query("SELECT * FROM users WHERE userHash = ?", uniqueHash)
 	isError(err)
 
 	usr := UserFromDatabase{}
