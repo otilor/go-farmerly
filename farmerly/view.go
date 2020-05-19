@@ -27,11 +27,11 @@ func parseView(w http.ResponseWriter, tmpl string, pageVars interface{}, r *http
 func ViewGen(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		uniqueHash, ok := r.URL.Query()["uniqueHash"]
-		if ok{
+		if ok {
 			user := findUserWithHash(uniqueHash)
 
 			parseView(w, "farmers.gohtml", user, r)
-		}else {
+		} else {
 			parseEmptyView(w, "generated_content.gohtml", r)
 		}
 
@@ -40,26 +40,26 @@ func ViewGen(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func findUserWithHash(hash []string) []UserFromDatabase{
+func findUserWithHash(hash []string) []UserFromDatabase {
 	uniqueHash := hash[0]
 	db := databaseConn()
-	findUserWithHash, err:= db.Query("SELECT * FROM users WHERE userHash = ?", uniqueHash)
+	findUserWithHash, err := db.Query("SELECT * FROM users WHERE userHash = ?", uniqueHash)
 	isError(err)
 
 	usr := UserFromDatabase{}
 	var res []UserFromDatabase
-	 for findUserWithHash.Next() {
-	 	var id int
-	 	var name, category, hash string
-	 	err = findUserWithHash.Scan(&id, &name, &category, &hash)
-	 	isError(err)
+	for findUserWithHash.Next() {
+		var id int
+		var name, category, hash string
+		err = findUserWithHash.Scan(&id, &name, &category, &hash)
+		isError(err)
 
-	 	usr.Id = id
-	 	usr.Name = name
-	 	usr.Category = category
-	 	usr.UniqueHash = hash
-	 }
-	 res = append(res, usr)
+		usr.Id = id
+		usr.Name = name
+		usr.Category = category
+		usr.UniqueHash = hash
+	}
+	res = append(res, usr)
 	return res
 
 }
