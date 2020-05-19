@@ -37,12 +37,26 @@ func ViewGen(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func findUserWithHash(hash []string) {
+func findUserWithHash(hash []string) []UserFromDatabase{
 	uniqueHash := hash[0]
 	db := databaseConn()
 	findUserWithHash, err:= db.Query("SELECT users WHERE uniqueHash = ?", uniqueHash)
 	isError(err)
 
+	usr := UserFromDatabase{}
+	var res []UserFromDatabase
+	 for findUserWithHash.Next() {
+	 	var id int
+	 	var name, category, hash string
+	 	err = findUserWithHash.Scan(&id, &name, &category, &hash)
+	 	isError(err)
 
+	 	usr.id = id
+	 	usr.name = name
+	 	usr.category = category
+	 	usr.uniqueHash = hash
+	 }
+	 res = append(res, usr)
+	return res
 
 }
