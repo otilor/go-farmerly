@@ -176,7 +176,9 @@ John Abraham</span>is now following you
                     <h3 class="text-center">Welcome, buddy here you will be able to monitor all your past actions. Coming later tho'</h3>
                     <div class="card mx-3 my-3">
                         <div class="card-header-title">
-                            <p></p>
+                            {{ range. }}
+                            <p>{{.Id}}</p>
+                            {{ end }}
                         </div>
                     </div>
                 </div>

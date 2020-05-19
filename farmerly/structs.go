@@ -1,10 +1,10 @@
 package farmerly
 
 type UserFromDatabase struct {
-	id         int
-	name       string
-	category   string
-	uniqueHash string
+	Id         int
+	Name       string
+	Category   string
+	UniqueHash string
 }
 
 type Categories struct {

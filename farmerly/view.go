@@ -54,10 +54,10 @@ func findUserWithHash(hash []string) []UserFromDatabase{
 	 	err = findUserWithHash.Scan(&id, &name, &category, &hash)
 	 	isError(err)
 
-	 	usr.id = id
-	 	usr.name = name
-	 	usr.category = category
-	 	usr.uniqueHash = hash
+	 	usr.Id = id
+	 	usr.Name = name
+	 	usr.Category = category
+	 	usr.UniqueHash = hash
 	 }
 	 res = append(res, usr)
 	return res
