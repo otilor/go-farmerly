@@ -26,12 +26,23 @@ func parseView(w http.ResponseWriter, tmpl string, pageVars []Categories, r *htt
 
 func ViewGen(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
-		_, ok := r.URL.Query()["uniqueHash"]
+		uniqueHash, ok := r.URL.Query()["uniqueHash"]
 		if ok{
+			findUserWithHash(uniqueHash)
 			parseEmptyView(w , "farmers.gohtml", r)
 		}
 		parseEmptyView(w, "generated_content.gohtml", r)
 	} else {
 	}
+
+}
+
+func findUserWithHash(hash []string) {
+	uniqueHash := hash[0]
+	db := databaseConn()
+	findUserWithHash, err:= db.Query("SELECT users WHERE uniqueHash = ?", uniqueHash)
+	isError(err)
+
+
 
 }
