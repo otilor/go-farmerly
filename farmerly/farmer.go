@@ -4,7 +4,6 @@
 package farmerly
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -29,8 +28,4 @@ func Category(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-}
-
-func HandleToken(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL.Query()["uniqueHash"])
 }
