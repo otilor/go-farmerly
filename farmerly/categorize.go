@@ -8,6 +8,7 @@ func sortAccordingToCategory(category string) {
 	getPostsAccordingToCategory, err := db.Query("SELECT * FROM posts WHERE category = ?",category)
 	isError(err)
 
+
 	for  getPostsAccordingToCategory.Next(){
 
 	}

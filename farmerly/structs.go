@@ -12,3 +12,10 @@ type Categories struct {
 	Name       string
 	uniqueHash string
 }
+
+type Posts struct {
+	Id int
+	Title string
+	Body string
+	Category string
+}
