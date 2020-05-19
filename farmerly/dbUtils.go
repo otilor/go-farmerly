@@ -3,11 +3,7 @@
 
 package farmerly
 
-type Categories struct {
-	Id         int
-	Name       string
-	uniqueHash string
-}
+
 
 func fetchCategories() (res []Categories) {
 	db := databaseConn()
