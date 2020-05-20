@@ -211,19 +211,21 @@ John Abraham</span>is now following you
                 </div>
 
                 <!-- Content comes here! -->
-                {{ range. }}
                     <div class="col-md-12 col-sm-12 facebook-color">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="text-center">Name</h3>
-                                <h4 class="text-center youtube-color facebook-bgcolor">{{ .Name }}</h4>
+                                {{ range .user}}
+                                <h4 class="text-center youtube-color facebook-bgcolor">{{ .Name  }}</h4>
+
                             </div>
 
                             <h3 class="text-center">Category chosen</h3>
                             <h4 class="text-center youtube-color facebook-bgcolor">{{ .Category }}</h4>
+                            {{ end }}
                         </div>
                     </div>
-                {{ end }}
+                {{ .posts.Title }}
                 <!--Auto generated content come here-->
 
             </div>

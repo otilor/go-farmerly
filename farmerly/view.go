@@ -29,8 +29,13 @@ func ViewGen(w http.ResponseWriter, r *http.Request) {
 		uniqueHash, ok := r.URL.Query()["uniqueHash"]
 		if ok {
 			user := findUserWithHash(uniqueHash)
-
-			parseView(w, "farmers.gohtml", user, r)
+			category := user[0].Category
+			posts := sortAccordingToCategory(category)
+			data := make(map[string]interface{})
+			data["user"] = user
+			data["posts"] = posts
+			//fmt.Println(data)
+			parseView(w, "farmers.gohtml", data, r)
 		} else {
 			parseEmptyView(w, "generated_content.gohtml", r)
 		}
