@@ -209,7 +209,7 @@ John Abraham</span>is now following you
 
                         </div>
                         <div class="card-body text-center">
-                            <form action="/show" method="get">
+                            <form action="/show" method="get" name = "uniqueHashForm">
                                 <input type="text" class="form-group" maxlength="8" name="uniqueHash">
                                 <input type="submit" class="btn btn-primary" value="Find">
                             </form>
@@ -251,6 +251,10 @@ John Abraham</span>is now following you
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
 <script src="assets/libs/js/main-js.js"></script>
+<script>
+    document.uniqueHashForm.uniqueHash.focus()
+
+</script>
 </body>
 
 </html>
