@@ -5,17 +5,17 @@ package farmerly
 
 
 
-func fetchCategories() (res []Categories) {
+func FetchCategories() (res []Categories) {
 	db := databaseConn()
-	fetchCategories, err := db.Query("SELECT * FROM categories")
+	FetchCategories, err := db.Query("SELECT * FROM categories ORDER by id")
 	isError(err)
 
 	categories := Categories{}
 	var result []Categories
-	for fetchCategories.Next() {
+	for FetchCategories.Next() {
 		var Id int
 		var name string
-		err = fetchCategories.Scan(&Id, &name)
+		err = FetchCategories.Scan(&Id, &name)
 
 		isError(err)
 
@@ -25,7 +25,31 @@ func fetchCategories() (res []Categories) {
 	}
 	return result
 }
+ func FetchUsers() (res []Users){
+	 db := databaseConn()
+	 FetchUsers, err := db.Query("SELECT * FROM users ORDER by id")
+	 isError(err)
 
+	  users := Users{}
+	 var result []Users
+	 for FetchUsers.Next() {
+		 var Id int
+		 var name string
+		 var category_name string
+		 var userHash string
+		 err = FetchUsers.Scan(&Id, &name, &category_name, &userHash)
+
+		 isError(err)
+
+		 users.Id = Id
+		 users.Name = name
+		 users.Name = name
+		 users.Category = category_name
+		 users.userHash = userHash
+		 result = append(result, users)
+	 }
+	 return result
+ }
 func addUser(name string, category string) {
 	db := databaseConn()
 	userHash := generateUserHash()
