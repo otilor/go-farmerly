@@ -48,6 +48,31 @@ func FetchUsers() (res []Users) {
 	}
 	return result
 }
+
+func GetPosts() (res []Posts){
+	db := databaseConn()
+	FetchUsers, err := db.Query("SELECT * FROM posts ORDER by id")
+	isError(err)
+
+	posts := Posts{}
+	var result []Posts
+	for FetchUsers.Next() {
+		var Id int
+		var title string
+		var body string
+		var category string
+		err = FetchUsers.Scan(&Id, &title, &body, &category)
+
+		isError(err)
+
+		posts.Id = Id
+		posts.Title = title
+		posts.Body = body
+		posts.Category = category
+		result = append(result, posts)
+	}
+	return result
+}
 func addUser(name string, category string) {
 	db := databaseConn()
 	userHash := generateUserHash()
